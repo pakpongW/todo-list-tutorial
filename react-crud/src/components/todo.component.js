@@ -146,7 +146,7 @@ export default class Todo extends Component {
                         <label>
                         <strong>Status:</strong>
                         </label>
-                        {currentTodo.published ? "Published" : "Pending"}
+                        {currentTodo.published ? "Done" : "Not finish"}
                     </div>
                     </form>
 

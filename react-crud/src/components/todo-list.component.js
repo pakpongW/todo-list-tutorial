@@ -10,22 +10,22 @@ export default class Todolist extends Component {
         this.refreshList = this.refreshList.bind(this);
         this.setActiveTodo = this.setActiveTodo.bind(this);
         this.removeAllTodo = this.removeAllTodo.bind(this);
-        this.serchTitle = this.serchTitle.bind(this);
+        this.searchTitle = this.searchTitle.bind(this);
         
         this.state = {
-            tutorials: [],
+            todo: [],
             currentTodo: null,
             currentIndex: -1,
             searchTitle: ""
         };
     }
 
-    componentDidMout(){
+    componentDidMount(){
         this.retrieveTodo();
     }
 
     onChangeSearchTitle(e) {
-        const searchTitle = e.target.valure;
+        const searchTitle = e.target.value;
 
         this.setState({
             searchTitle: searchTitle
@@ -36,7 +36,7 @@ export default class Todolist extends Component {
         TodoDataService.getAll()
             .then(response => {
                 this.setState({
-                    tutorials: response.data
+                    todo: response.data
                 });
                 console.log(response.data);
             })
@@ -56,7 +56,7 @@ export default class Todolist extends Component {
     setActiveTodo(todo, index) {
         this.setState({
             currentTodo: todo,
-            currentTodo: index
+            currentIndex: index
         });
     }
 
@@ -72,6 +72,11 @@ export default class Todolist extends Component {
     }
 
     searchTitle() {
+        this.setState({
+            currentTutorial: null,
+            currentIndex: -1
+        });
+
         TodoDataService.findByTitle(this.state.searchTitle)
             .then(response => {
                 this.setState({
@@ -102,9 +107,9 @@ export default class Todolist extends Component {
                             <button
                                 className="btn btn-outline-secondary"
                                 type="button"
-                                obClick={this.searchTitle}
+                                onClick={this.searchTitle}
                             >
-                                Serch 
+                                Search 
                             </button>   
                         </div> 
                     </div>
@@ -114,16 +119,16 @@ export default class Todolist extends Component {
 
                     <ul className="list-group">
                         {todo && 
-                            todo.map((tutorial, index) => (
+                            todo.map((todo, index) => (
                                 <li 
-                                    classNamme={
+                                    className={
                                         " list-group-item " +
                                         (index === currentIndex ? "active" : "")
                                     }
                                     onClick={() => this.setActiveTodo(todo, index)}
                                     key={index}
                                 >
-                                    {todo.Title}
+                                    {todo.title}
                                 </li>
                             ))}
                     </ul>
@@ -138,7 +143,7 @@ export default class Todolist extends Component {
                 <div className="col-md-6">
                     {currentTodo ? (
                         <div>
-                            <h4>Todo</h4>
+                            <h4>Information</h4>
                             <div>
                                 <label>
                                     <strong>Title:</strong>
@@ -155,11 +160,11 @@ export default class Todolist extends Component {
                                 <label>
                                     <strong>Status:</strong>
                                 </label>{" "}
-                                {currentTodo.published ? "published" : "Pending"}
+                                {currentTodo.published ? "Done" : "Not finish"}
                             </div>
 
                             <Link
-                                to={"/tutorials/" + currentTodo.id}
+                                to={"/todo/" + currentTodo.id}
                                 className="badge badge-warning"
                             >
                                 Edit

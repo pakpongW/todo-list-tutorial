@@ -40,7 +40,7 @@ export default class AddTodo extends Component {
         TodoDataService.create(data)
         .then(response => {
             this.setState({
-                id: response.sata.id,
+                id: response.data.id,
                 title: response.data.title,
                 description: response.data.description,
                 published: response.data.published,
@@ -71,7 +71,7 @@ export default class AddTodo extends Component {
                 {this.state.submitted ? (
                     <div>
                         <h4>You submitted successfully!</h4>
-                        <button className="btn btn-success" onClick={this.newTutorial}>
+                        <button className="btn btn-success" onClick={this.newTodo}>
                             Add
                         </button>
                     </div>
@@ -85,20 +85,20 @@ export default class AddTodo extends Component {
                                 id="title"
                                 required
                                 value={this.state.title}
-                                obChange={this.onChangeTitle}
+                                onChange={this.onChangeTitle}
                                 name="title"
                             />
                         </div>
 
                         <div className="form-group">
-                            <albel htmlFor="description">description</albel>
+                            <label htmlFor="description">description</label>
                             <input  
                                 type="text"
                                 className="form-control"
                                 id="description"
                                 required
                                 value={this.state.description}
-                                obChange={this.onChangeDescription}
+                                onChange={this.onChangeDescription}
                                 name="description"
                             />
                         </div>
