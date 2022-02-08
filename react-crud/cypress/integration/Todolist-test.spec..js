@@ -26,12 +26,18 @@ describe('Input form', () => {
             .click()
     })
 
-    it('Information test', () => {
+    it.only('Information test', () => {
         const typeText3 = 'Go to shopping'
+        const typeText4 = 'today at 12:00'
+        const typeText5 = 'Not finish'
 
         cy.get('.list-group li')
             .contains(typeText3)
             .click()
+        cy.get('.col-md-6')
+            .should('contain',typeText3)
+            .should('contain',typeText4)
+            .should('contain',typeText5)
     })
 
     it('Removeall test', () => {
