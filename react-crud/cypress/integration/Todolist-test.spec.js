@@ -4,7 +4,7 @@ describe('Input form', () => {
         cy.visit("/")
     })
 
-    it('Search test', () => {
+    it.only('Search test', () => {
         const typeText1 = 'Go to shopping'
 
         cy.get('.form-control')
@@ -13,9 +13,12 @@ describe('Input form', () => {
 
         cy.get('.btn-outline-secondary')
             .click()
+            
+        cy.get('.list-group li')
+            .should('contain',typeText1)
     })
     
-    it('Search Not found', () => {
+    it('Search Not found test', () => {
         const typeText2 = 'Buy SLP'
 
         cy.get('.form-control')
@@ -24,9 +27,12 @@ describe('Input form', () => {
 
         cy.get('.btn-outline-secondary')
             .click()
+
+        cy.get('.list-group li')
+            .should('have.length', 0)
     })
 
-    it.only('Information test', () => {
+    it('Information test', () => {
         const typeText3 = 'Go to shopping'
         const typeText4 = 'today at 12:00'
         const typeText5 = 'Not finish'
@@ -44,6 +50,9 @@ describe('Input form', () => {
         
         cy.get('.btn-danger')
             .click()
+
+        cy.get('.list-group li')
+            .should('have.length', 0)
     })
 
 })
