@@ -60,13 +60,15 @@ describe('Input form', () => {
             .eq(0)
             .click()
         
-        // cy.get('.list-group-item')
-        //     .eq(0)
-        //     .should('have.value', 'Go to shopping')
+        cy.get('.list-group')
 
-        // cy.get('.list-group-item')
-        //     .eq(1)
-        //     .should('have.value', typeText1)    
+        cy.get('.list-group-item')
+            .eq(0)
+            .should('be.visible')
+
+        cy.get('.list-group-item')
+            .eq(1)
+            .should('be.visible')    
     })
 
     it('Add only title', () => {
