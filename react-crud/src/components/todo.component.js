@@ -177,6 +177,13 @@ export default class Todo extends Component {
                     </div>
                     </form>
 
+                    <div className="form-group">
+                        <label>
+                        <strong>Favourite Status:</strong>
+                        </label>
+                        {currentTodo.favourite ? "Favourite" : "Unfavourite"}
+                    </div>
+
                     {currentTodo.published ? (
                     <button
                         className="badge badge-primary mr-2"
