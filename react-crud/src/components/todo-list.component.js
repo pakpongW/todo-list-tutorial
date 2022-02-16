@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import TodoDataService from "../services/todo.service";
 import { Link } from "react-router-dom";
-import { AiFillStar } from 'react-icons/ai';
-import { AiOutlineStar } from 'react-icons/ai';
+import "./star.css";
 
 export default class Todolist extends Component {
     constructor(props) {
@@ -142,6 +141,7 @@ export default class Todolist extends Component {
                                 >
                                     <button
                                         type="button"
+                                        name="favourite"
                                         key = {index}
                                         className={this.state.favorite ? "on" : "off"}
                                         onClick={this.updatefavorite}

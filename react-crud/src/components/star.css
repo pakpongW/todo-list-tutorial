@@ -1,0 +1,32 @@
+    button[name="favourite"] {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border: 0;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+    }
+
+    button[name="favourite"]:focus {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border: 0;
+        cursor: pointer;
+        overflow: hidden;
+        outline: none;
+    }
+
+    .on {
+        color: rgb(255, 251, 0);
+        outline: rgb(255, 251, 0);
+        
+    }
+
+    .off {
+        border: rgb(0, 0, 0);
+        color: rgb(0, 0, 0);
+    }
+
+    .star {
+        font-size : 30px;
+    }
