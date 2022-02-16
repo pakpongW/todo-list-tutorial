@@ -16,7 +16,8 @@ export default class Todo extends Component {
                 id: null,
                 title: "",
                 description: "",
-                published: false
+                published: false,
+                favourite: false
             },
             message: ""
         };
@@ -85,6 +86,30 @@ export default class Todo extends Component {
                 console.log(e);
             });
     }
+
+    updatefavourite(fav){
+        var data = {
+            id: this.state.currentTodo.id,
+            title: this.state.currentTodo.title,
+            description: this.state.currentTodo.description,
+            published: this.state.currentTodo.published,
+            favourite: fav
+            }
+            
+            TodoDataService.update(this.state.currentTodo.id, data)
+            .then(response => {
+                this.setState(prevState => ({
+                    currentTodo: {
+                        ...prevState.currentTodo,
+                        favourite: fav
+                    }
+                }));
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+        };
 
     updateTodo() {
         TodoDataService.update(
@@ -163,6 +188,22 @@ export default class Todo extends Component {
                         onClick={() => this.updatePublished(true)}
                     >
                         Publish
+                    </button>
+                    )}
+
+                    {currentTodo.favourite ? (
+                    <button
+                        className="badge badge-primary mr-2"
+                        onClick={() => this.updatefavourite(false)}
+                    >
+                        Unfavourite
+                    </button>
+                    ) : (
+                    <button
+                        className="badge badge-primary mr-2"
+                        onClick={() => this.updatefavourite(true)}
+                    >
+                        Favourite
                     </button>
                     )}
 

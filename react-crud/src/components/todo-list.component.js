@@ -11,16 +11,18 @@ export default class Todolist extends Component {
         this.setActiveTodo = this.setActiveTodo.bind(this);
         this.removeAllTodo = this.removeAllTodo.bind(this);
         this.searchTitle = this.searchTitle.bind(this);
-        
+        this.updatefavorite = this.updatefavorite.bind(this);
+
         this.state = {
             todo: [],
             currentTodo: null,
             currentIndex: -1,
-            searchTitle: ""
+            searchTitle: "",
+            favorite: false
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.retrieveTodo();
     }
 
@@ -70,7 +72,16 @@ export default class Todolist extends Component {
                 console.log(e);
             });
     }
+    
+    updatefavorite() {
 
+        if(this.state.favorite) { 
+            this.setState({favorite: false})
+        } else {
+            this.setState({favorite: true})
+        };
+
+    }
     searchTitle() {
         this.setState({
             currentTutorial: null,
@@ -89,7 +100,7 @@ export default class Todolist extends Component {
             });
     }
 
-    render(){
+    render() {
         const { searchTitle, todo, currentTodo, currentIndex } = this.state;
 
         return (
@@ -102,25 +113,25 @@ export default class Todolist extends Component {
                             placeholder="Search by title"
                             value={searchTitle}
                             onChange={this.onChangeSearchTitle}
-                        /> 
+                        />
                         <div className="input-group-append">
                             <button
                                 className="btn btn-outline-secondary"
                                 type="button"
                                 onClick={this.searchTitle}
                             >
-                                Search 
-                            </button>   
-                        </div> 
+                                Search
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div className="col-md-6">
                     <h4> TodoList</h4>
 
                     <ul className="list-group">
-                        {todo && 
+                        {todo &&
                             todo.map((todo, index) => (
-                                <li 
+                                <li
                                     className={
                                         " list-group-item " +
                                         (index === currentIndex ? "active" : "")
@@ -128,6 +139,14 @@ export default class Todolist extends Component {
                                     onClick={() => this.setActiveTodo(todo, index)}
                                     key={index}
                                 >
+                                    <button
+                                        type="button"
+                                        key = {index}
+                                        className={this.state.favorite ? "on" : "off"}
+                                        onClick={this.updatefavorite}
+                                    ><span className="star" >&#9733;</span>
+                                    </button>
+                                    
                                     {todo.title}
                                 </li>
                             ))}
@@ -138,7 +157,7 @@ export default class Todolist extends Component {
                         onClick={this.removeAllTodo}
                     >
                         Remove All
-                    </button>             
+                    </button>
                 </div>
                 <div className="col-md-6">
                     {currentTodo ? (

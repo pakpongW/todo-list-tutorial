@@ -16,7 +16,8 @@ exports.create = (req, res) => {
     const todo = {
       title: req.body.title,
       description: req.body.description,
-      published: req.body.published ? req.body.published : false
+      published: req.body.published ? req.body.published : false,
+      favourite: req.body.favourite ? req.body.favourite : false
     };
   
     // Save todo in the database
