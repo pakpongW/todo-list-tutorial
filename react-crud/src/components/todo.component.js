@@ -69,7 +69,9 @@ export default class Todo extends Component {
             id: this.state.currentTodo.id,
             title: this.state.currentTodo.title,
             description: this.state.currentTodo.description,
+            favourite: this.state.currentTodo.favourite,
             published: status
+            
         };
 
         TodoDataService.update(this.state.currentTodo.id, data)

@@ -12,13 +12,13 @@ export default class Todolist extends Component {
         this.setActiveTodo = this.setActiveTodo.bind(this);
         this.removeAllTodo = this.removeAllTodo.bind(this);
         this.searchTitle = this.searchTitle.bind(this);
-        this.updatefavorite = this.updatefavorite.bind(this);
+        this.updatefavourite = this.updatefavourite.bind(this);
 
         this.state = {
             todo: [],
             currentTodo: null,
             currentIndex: -1,
-            searchTitle: "",
+            searchTitle: ""
         };
     }
 
@@ -73,13 +73,30 @@ export default class Todolist extends Component {
             });
     }
     
-    updatefavorite() {
+    updatefavourite(todo) {   
 
-        if(this.state.favorite) { 
-            this.setState({favorite: false})
-        } else {
-            this.setState({favorite: true})
+        var data = {
+            id: todo.id,
+            title: todo.title,
+            description: todo.description,
+            published: todo.published,
+            favourite: todo.favourite ? false : true
         };
+
+        // if(todo.favourite) { 
+        //     this.data.setState({favourite: false})
+        // } else {
+        //     this.data.setState({favourite: true})
+        // };
+
+        TodoDataService.update(todo.id, data)
+            .then(response => {
+                console.log(data)
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
 
     }
     searchTitle() {
@@ -143,8 +160,8 @@ export default class Todolist extends Component {
                                         type="button"
                                         name="favourite"
                                         key = {index}
-                                        className={this.state.favorite ? "on" : "off"}
-                                        onClick={this.updatefavorite}
+                                        className={todo.favourite ? "on" : "off"}
+                                        onClick={this.updatefavourite(todo)}
                                     ><span className="star" >&#9733;</span>
                                     </button>
                                     
