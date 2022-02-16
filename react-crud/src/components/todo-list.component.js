@@ -83,22 +83,20 @@ export default class Todolist extends Component {
             favourite: todo.favourite ? false : true
         };
 
-        // if(todo.favourite) { 
-        //     this.data.setState({favourite: false})
-        // } else {
-        //     this.data.setState({favourite: true})
-        // };
-
         TodoDataService.update(todo.id, data)
             .then(response => {
+                this.refreshList()
                 console.log(data)
-                console.log(response.data);
+                console.log(response.data); 
             })
             .catch(e => {
                 console.log(e);
             });
+        
+        
 
     }
+    
     searchTitle() {
         this.setState({
             currentTutorial: null,
@@ -161,7 +159,7 @@ export default class Todolist extends Component {
                                         name="favourite"
                                         key = {index}
                                         className={todo.favourite ? "on" : "off"}
-                                        onClick={this.updatefavourite(todo)}
+                                        onClick={() => this.updatefavourite(todo)}
                                     ><span className="star" >&#9733;</span>
                                     </button>
                                     
