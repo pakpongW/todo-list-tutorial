@@ -60,7 +60,6 @@ describe('Favourite', () => {
         
         cy.get(".btn-success")
           .click()
-react-crud/cypress/integration/Fav-test.spec.js
     })
 
     it('Check Favourite status', () => {
@@ -72,21 +71,21 @@ react-crud/cypress/integration/Fav-test.spec.js
           .click()
 
         cy.get('.col-md-6')
-          .should('contain',"Unfavourite")
+          .should('contain',"Favourite Status: Unfavourite")
         
         cy.get('.list-group li')
           .contains("Homework Softdev2")
           .click()
 
         cy.get('.col-md-6')
-          .should('contain',"Unfavourite")
+          .should('contain',"Favourite Status: Unfavourite")
 
         cy.get('.list-group li')
           .contains("Play Game")
           .click()
 
         cy.get('.col-md-6')
-          .should('contain',"Unfavourite")
+          .should('contain',"Favourite Status: Unfavourite")
 
     })
 
@@ -105,12 +104,16 @@ react-crud/cypress/integration/Fav-test.spec.js
         cy.get('.list-group li')
           .contains("Go to shopping")
           .click()
+
+        cy.get('#favourite')
+          .eq(0)
+          .should('have.css','color','rgb(255, 251, 0)')
         
         cy.get('.col-md-6')
-          .should('contain',"Favourite")
+          .should('contain',"Favourite Status: Favourite")
           
-        
     })
+
 
     it('Check Favourite Order', () => {
 
@@ -122,20 +125,67 @@ react-crud/cypress/integration/Fav-test.spec.js
 
         cy.get('.list-group li')
           .eq(0)
-          .contains("Go to shopping")
+          .should('contain',"Go to shopping")
 
         cy.get('.list-group li')
           .eq(1)
-          .contains("Play Game")
+          .should('contain',"Play Game")
 
         cy.get('.list-group li')
           .eq(2)
-          .contains("Homework Softdev2")
-          
+          .should('contain',"Homework Softdev2")
         
-        
-          
+        cy.get('.star')
+          .eq(0)
+          .click() 
+
+        cy.get('.list-group li')
+          .eq(0)
+          .should('contain',"Play Game")
+
+        cy.get('.list-group li')
+          .eq(1)
+          .should('contain',"Go to shopping")
+
+        cy.get('.list-group li')
+          .eq(2)
+          .should('contain',"Homework Softdev2")
         
     })
+
+    it('Favourite in Edit', () => {
+
+      cy.visit("/todo")
+
+      cy.get(".list-group li")
+        .eq(0)
+        .click()
+      
+      cy.get('.badge-warning')
+        .click()
+      
+      cy.get(".form-group")
+        .should('contain','Favourite')
+      
+      cy.get(".mr-2")
+        .contains("Unfavourite")
+        .click() 
+        
+      cy.get(".mr-2")
+        .should('contain','Favourite')
+      
+      cy.get(".form-group")
+        .should('contain','Unfavourite')
+        
+      cy.visit("/todo")
+
+      cy.get(".list-group li")
+        .eq(2)
+        .click()
+
+      cy.get('.col-md-6')
+        .should('contain',"Favourite Status: Unfavourite")
+      
+  })
 
 })
