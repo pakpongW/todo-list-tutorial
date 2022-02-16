@@ -159,7 +159,7 @@ export default class Todolist extends Component {
                                 >
                                     <button
                                         type="button"
-                                        name="favourite"
+                                        id="favourite"
                                         key = {index}
                                         className={todo.favourite ? "on" : "off"}
                                         onClick={() => this.updatefavourite(todo)}

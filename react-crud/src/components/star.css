@@ -1,4 +1,4 @@
-    button[name="favourite"] {
+    button[id="favourite"] {
         background-color: transparent;
         background-repeat: no-repeat;
         border: 0;
@@ -6,7 +6,7 @@
         overflow: hidden;
         outline: none;
     }
-    button[name="favourite"]:focus {
+    button[id="favourite"]:focus {
         background-color: transparent;
         background-repeat: no-repeat;
         border: 0;
