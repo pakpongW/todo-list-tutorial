@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import TodoDataService from "../services/todo.service";
 import { Link } from "react-router-dom";
+import { AiFillStar } from 'react-icons/ai';
+import { AiOutlineStar } from 'react-icons/ai';
 
 export default class Todolist extends Component {
     constructor(props) {
@@ -18,7 +20,6 @@ export default class Todolist extends Component {
             currentTodo: null,
             currentIndex: -1,
             searchTitle: "",
-            favorite: false
         };
     }
 
@@ -180,6 +181,12 @@ export default class Todolist extends Component {
                                     <strong>Status:</strong>
                                 </label>{" "}
                                 {currentTodo.published ? "Done" : "Not finish"}
+                            </div>
+                            <div>
+                                <label>
+                                    <strong>Favourite Status:</strong>
+                                </label>{" "}
+                                {currentTodo.favourite ? "Favourite" : "Unfavourite"}
                             </div>
 
                             <Link
