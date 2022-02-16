@@ -5,7 +5,7 @@ describe('Input form', () => {
     // })
 
     it('Add Sell doge for test', () => {
-        const typedText0 = 'Sell dog'
+        const typedText0 = 'Sell doge'
 
         cy.visit("/todo")
 
@@ -76,7 +76,7 @@ describe('Input form', () => {
 
     })
 
-    it('Test edit title & description without title', () => {
+    it.only('Test edit title & description without title', () => {
         const typedText = 'Sell shiba'
 
         cy.visit("/todo")
@@ -97,7 +97,7 @@ describe('Input form', () => {
 
     })
 
-    it('Test edit status', () => {
+    it.only('Test edit status', () => {
 
         cy.get('.badge-primary')
             .click()
@@ -115,7 +115,7 @@ describe('Input form', () => {
 
     })
 
-    it('Test delete', () => {
+    it.only('Test delete', () => {
         const typedText = 'Sell shiba'
         
         cy.get('.badge-danger')
