@@ -6,7 +6,6 @@
         overflow: hidden;
         outline: none;
     }
-
     button[name="favourite"]:focus {
         background-color: transparent;
         background-repeat: no-repeat;
@@ -15,18 +14,15 @@
         overflow: hidden;
         outline: none;
     }
-
     .on {
         color: rgb(255, 251, 0);
         outline: rgb(255, 251, 0);
         
     }
-
     .off {
         border: rgb(0, 0, 0);
         color: rgb(0, 0, 0);
     }
-
     .star {
-        font-size : 20px;
+        font-size : 30px;
     }
