@@ -1,4 +1,5 @@
 describe('Input form', () => {
+    
     it('Count time favourite botton', () => {
         cy.get('.star')
             .eq(999)
