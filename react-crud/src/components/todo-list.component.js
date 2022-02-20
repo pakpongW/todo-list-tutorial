@@ -39,7 +39,7 @@ export default class Todolist extends Component {
             .then(response => {
                 this.setState({
                     todo: response.data
-                    .sort((a, b) => (a.favourite > b.favourite) ? -1 : 1)
+                    // .sort((a, b) => (a.favourite > b.favourite) ? -1 : 1)
                 });
                 console.log(response.data);
             
